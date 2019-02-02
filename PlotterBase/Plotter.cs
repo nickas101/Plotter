@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace ConsoleApp1
+namespace PlotterBase
 {
     public class Plotter
     {
-        public static void DrowPlot(Parser.Plots plots)
+        public static void PreparePlots(Parser.Plots plots)
         {
             DirectoryInfo d = new DirectoryInfo(@"D:\Plots");
             d.Create();
@@ -51,16 +51,14 @@ namespace ConsoleApp1
                     SinglePlot singlePlot = new SinglePlot(x, y, spec, i, plots.Spc[i]);
 
                     string filename = "D:\\Plots/Unit#" + unit + ".png";
-                    singlePlot.Chrt.SaveImage(filename, ChartImageFormat.Png);
+                    singlePlot.ChartImage.SaveImage(filename, ChartImageFormat.Png);
                 }
             }
-
-            
 
             MultyPlot multyPlot = new MultyPlot(xm, ym, specm, 1, plots.Spc[1]);
 
             string filenameMulty = "D:\\Plots/AllUnits.png";
-            multyPlot.Chrt.SaveImage(filenameMulty, ChartImageFormat.Png);
+            multyPlot.ChartImage.SaveImage(filenameMulty, ChartImageFormat.Png);
         }
     }
 }
